@@ -4,9 +4,12 @@ QT += qml quick widgets
 
 CONFIG += c++11
 
-SOURCES += main.cpp \
-    Cpuinforeader.cpp \
-    Cpuinfodataholder.cpp
+SOURCES += src/main.cpp \
+    src/Cpuinfodataholder.cpp \
+    src/Cpuinforeader.cpp \
+    src/viewmodel/Processoritemviewmodel.cpp \
+    src/viewmodel/Processoritemlistviewmodel.cpp
+
 
 RESOURCES += qml.qrc
 
@@ -17,6 +20,8 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    Cpuinforeader.h \
-    Cpuinfodataholder.h
+    src/Cpuinfodataholder.h \
+    src/Cpuinforeader.h \
+    src/viewmodel/Processoritemviewmodel.h \
+    src/viewmodel/Processoritemlistviewmodel.h
 

@@ -8,8 +8,8 @@ Email Id: sabari.eshwar@gmail.com
 #include <iostream>
 #include <fstream>
 
-#include <Cpuinforeader.h>
-#include <Cpuinfodataholder.h>
+#include <src/Cpuinforeader.h>
+#include <src/Cpuinfodataholder.h>
 
 
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     return app.exec();
 }

@@ -8,7 +8,7 @@ Email Id: sabari.eshwar@gmail.com
 #include <QMap>
 #include <QString>
 
-#include <Cpuinfodataholder.h>
+#include <src/Cpuinfodataholder.h>
 
 class CpuInfoReader
 {
