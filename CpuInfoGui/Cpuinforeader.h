@@ -1,8 +1,14 @@
+/**************************************************************************
+Creator: Sabariesh Ganesan
+Email Id: sabari.eshwar@gmail.com
+**************************************************************************/
 #ifndef CPUINFOREADER_H
 #define CPUINFOREADER_H
 
 #include <QMap>
 #include <QString>
+
+#include <Cpuinfodataholder.h>
 
 class CpuInfoReader
 {
@@ -14,6 +20,8 @@ public:
 
 public:
     QMap<QString, QString> _mapVariable;
+    int noOfProcessors;
+    CpuInfoDataHolder dataHolder;
 };
 
 #endif // CPUINFOREADER_H
