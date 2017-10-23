@@ -6,7 +6,7 @@ ApplicationWindow {
     width: 640
     height: 480
     title: qsTr("Hello World")
-
+    property var vm: root
     menuBar: MenuBar {
         Menu {
             title: qsTr("File")
@@ -22,8 +22,23 @@ ApplicationWindow {
     }
 
     Label {
-        text: qsTr("Hello World")
+//        text: qsTr("Hello World")
+        text: vm.noOfProcessors
         anchors.centerIn: parent
     }
+    Row {
+        Repeater {
+            model: vm.processorItems
+            Text {
+                readonly property var processor : modelData
+                text: modelData.vendorId
+    //            anchors.centerIn: parent
+            }
+
+            }
+
+    }
+
+
 }
 
