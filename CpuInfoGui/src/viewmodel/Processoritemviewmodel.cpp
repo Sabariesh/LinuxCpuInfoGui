@@ -4,7 +4,8 @@ Email Id: sabari.eshwar@gmail.com
 **************************************************************************/
 
 #include "Processoritemviewmodel.h"
-
+#include "Processorpropviewmodel.h"
+//#include <iostream>
 ProcessorItemViewModel::ProcessorItemViewModel(QMap<QString, QString> dataMap, QObject *parent)
     : QObject(parent),
       _dataMap(dataMap)
@@ -52,6 +53,16 @@ QString ProcessorItemViewModel::processorNo() const
     return _processorNo;
 }
 
+QVariantList ProcessorItemViewModel::dataVariant() const
+{
+    return _dataVariant;
+}
+
+QList<QObject *> ProcessorItemViewModel::propItems() const
+{
+    return _propItems;
+}
+
 //QVariantMap ProcessorItemViewModel::dataVariant() const
 //{
 //    return _dataVariant;
@@ -60,7 +71,7 @@ QString ProcessorItemViewModel::processorNo() const
 void ProcessorItemViewModel::updateValues()
 {
 
-    //_dataVariant = _dataMap;
+//    _dataVariant = _dataMap;
 
     _vendorId = _dataMap["vendor_id"];
     _modelName = _dataMap["model name"];
@@ -71,6 +82,19 @@ void ProcessorItemViewModel::updateValues()
     _bogoMips = _dataMap["bogomips"];
     _processorNo = _dataMap["processor"];
 
+    QMap<QString, QString>::iterator it;
+
+    for (it = _dataMap.begin(); it != _dataMap.end(); ++it) {
+
+        auto newItem = new ProcessorPropViewModel(it.key(),it.value(), this);
+        _propItems << newItem;
+//        _dataVariant.append(it.key());
+        //            std::cout << it.key().toStdString() << " : " << it.value().toStdString() << "\n";
+
+    }
+
+
+
     emit vendorIdChanged();
     emit modelNameChanged();
     emit cpuMhzChanged();
@@ -79,7 +103,7 @@ void ProcessorItemViewModel::updateValues()
     emit fpuChanged();
     emit bogoMipsChanged();
     emit processorNoChanged();
-//    emit dataVariantChanged();
+    emit dataVariantChanged();
 
 }
 

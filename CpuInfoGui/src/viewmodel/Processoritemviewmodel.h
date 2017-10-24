@@ -11,6 +11,9 @@ Email Id: sabari.eshwar@gmail.com
 
 #include <QMap>
 #include <QString>
+#include <QVariant>
+#include <QVariantMap>
+#include <QVariantList>
 
 class ProcessorItemViewModel : public QObject
 {
@@ -24,7 +27,8 @@ public:
     Q_PROPERTY(QString fpu READ fpu NOTIFY fpuChanged)
     Q_PROPERTY(QString bogoMips READ bogoMips NOTIFY bogoMipsChanged)
     Q_PROPERTY(QString processorNo READ processorNo NOTIFY processorNoChanged)
-//    Q_PROPERTY(QVariantMap dataVariant READ dataVariant NOTIFY dataVariantChanged)
+    Q_PROPERTY(QVariantList dataVariant READ dataVariant NOTIFY dataVariantChanged)
+    Q_PROPERTY(QList<QObject*> propItems READ propItems NOTIFY propItemsChanged)
 
     ProcessorItemViewModel(QMap<QString, QString> dataMap, QObject *parent = nullptr);
 
@@ -46,6 +50,10 @@ public:
 
 //    QVariantMap dataVariant() const;
 
+    QVariantList dataVariant() const;
+
+    QList<QObject*> propItems() const;
+
 signals:
 
     void vendorIdChanged();
@@ -66,6 +74,10 @@ signals:
 
 //    void dataVariantChanged();
 
+    void dataVariantChanged();
+
+    void propItemsChanged(QList<QObject*> propItems);
+
 private slots:
     void updateValues();
 
@@ -79,7 +91,10 @@ private:
     QString _fpu;
     QString _bogoMips;
     QString _processorNo;
-//    QVariantMap _dataVariant;
+    //    QMap<QString, QString> _dataVariant;
+    QVariantList _dataVariant;
+    QVariantMap _dataVariant1;
+    QList<QObject*> _propItems;
 };
 
 #endif // PROCESSORITEMVIEWMODEL_H

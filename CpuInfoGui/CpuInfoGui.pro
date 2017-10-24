@@ -8,7 +8,8 @@ SOURCES += src/main.cpp \
     src/Cpuinfodataholder.cpp \
     src/Cpuinforeader.cpp \
     src/viewmodel/Processoritemviewmodel.cpp \
-    src/viewmodel/Processoritemlistviewmodel.cpp
+    src/viewmodel/Processoritemlistviewmodel.cpp \
+    src/viewmodel/Processorpropviewmodel.cpp
 
 
 RESOURCES += qml.qrc
@@ -23,5 +24,6 @@ HEADERS += \
     src/Cpuinfodataholder.h \
     src/Cpuinforeader.h \
     src/viewmodel/Processoritemviewmodel.h \
-    src/viewmodel/Processoritemlistviewmodel.h
+    src/viewmodel/Processoritemlistviewmodel.h \
+    src/viewmodel/Processorpropviewmodel.h
 

@@ -40,7 +40,7 @@ GridLayout {
         itemRect.color: "grey"
     }
     ProcessorInfoItem{
-        itemText.text: "CPU Speed"
+        itemText.text: "CPU Speed in MHz"
         itemText.color: "black"
         itemRect.color: "white"
     }
