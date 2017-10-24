@@ -5,7 +5,6 @@ ProcessorPropViewModel::ProcessorPropViewModel(QString key, QString name, QObjec
       _key(key),
       _value(name)
 {
-
 }
 
 QString ProcessorPropViewModel::key() const

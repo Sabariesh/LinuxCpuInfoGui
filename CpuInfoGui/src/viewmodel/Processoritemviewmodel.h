@@ -27,56 +27,30 @@ public:
     Q_PROPERTY(QString fpu READ fpu NOTIFY fpuChanged)
     Q_PROPERTY(QString bogoMips READ bogoMips NOTIFY bogoMipsChanged)
     Q_PROPERTY(QString processorNo READ processorNo NOTIFY processorNoChanged)
-    Q_PROPERTY(QVariantList dataVariant READ dataVariant NOTIFY dataVariantChanged)
     Q_PROPERTY(QList<QObject*> propItems READ propItems NOTIFY propItemsChanged)
 
     ProcessorItemViewModel(QMap<QString, QString> dataMap, QObject *parent = nullptr);
 
     QString vendorId() const;
-
     QString modelName() const;
-
     QString cpuMhz() const;
-
     QString cacheSize() const;
-
     QString cpuCores() const;
-
     QString fpu() const;
-
     QString bogoMips() const;
-
     QString processorNo() const;
-
-//    QVariantMap dataVariant() const;
-
-    QVariantList dataVariant() const;
-
     QList<QObject*> propItems() const;
 
 signals:
-
     void vendorIdChanged();
-
     void modelNameChanged();
-
     void cpuMhzChanged();
-
     void cacheSizeChanged();
-
     void cpuCoresChanged();
-
     void fpuChanged();
-
     void bogoMipsChanged();
-
     void processorNoChanged();
-
-//    void dataVariantChanged();
-
-    void dataVariantChanged();
-
-    void propItemsChanged(QList<QObject*> propItems);
+    void propItemsChanged();
 
 private slots:
     void updateValues();
@@ -90,10 +64,7 @@ private:
     QString _cpuCores;
     QString _fpu;
     QString _bogoMips;
-    QString _processorNo;
-    //    QMap<QString, QString> _dataVariant;
-    QVariantList _dataVariant;
-    QVariantMap _dataVariant1;
+    QString _processorNo;   
     QList<QObject*> _propItems;
 };
 

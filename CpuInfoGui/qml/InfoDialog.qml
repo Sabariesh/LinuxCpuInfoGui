@@ -4,7 +4,7 @@ import QtQuick.Controls 1.4
 
 Window {
     id: infoDialog
-    title: qsTr("Linux CPU Info")
+    title: qsTr("Processor Detailed Info")
     color: "white"
     property int initialWidth: 600
     property int initialHeight: 450

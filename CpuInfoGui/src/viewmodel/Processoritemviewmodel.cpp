@@ -53,25 +53,13 @@ QString ProcessorItemViewModel::processorNo() const
     return _processorNo;
 }
 
-QVariantList ProcessorItemViewModel::dataVariant() const
-{
-    return _dataVariant;
-}
-
 QList<QObject *> ProcessorItemViewModel::propItems() const
 {
     return _propItems;
 }
 
-//QVariantMap ProcessorItemViewModel::dataVariant() const
-//{
-//    return _dataVariant;
-//}
-
 void ProcessorItemViewModel::updateValues()
 {
-
-//    _dataVariant = _dataMap;
 
     _vendorId = _dataMap["vendor_id"];
     _modelName = _dataMap["model name"];
@@ -88,12 +76,7 @@ void ProcessorItemViewModel::updateValues()
 
         auto newItem = new ProcessorPropViewModel(it.key(),it.value(), this);
         _propItems << newItem;
-//        _dataVariant.append(it.key());
-        //            std::cout << it.key().toStdString() << " : " << it.value().toStdString() << "\n";
-
     }
-
-
 
     emit vendorIdChanged();
     emit modelNameChanged();
@@ -103,7 +86,7 @@ void ProcessorItemViewModel::updateValues()
     emit fpuChanged();
     emit bogoMipsChanged();
     emit processorNoChanged();
-    emit dataVariantChanged();
+    emit propItemsChanged();
 
 }
 

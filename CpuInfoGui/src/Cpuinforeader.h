@@ -14,12 +14,9 @@ class CpuInfoReader
 {
 public:
     CpuInfoReader();
-
     friend std::istream& operator>>(std::istream& str, CpuInfoReader& dataReader);
-
-
 public:
-    QMap<QString, QString> _mapVariable;
+    QMap<QString, QString> mapVariable;
     int noOfProcessors;
     CpuInfoDataHolder dataHolder;
 };

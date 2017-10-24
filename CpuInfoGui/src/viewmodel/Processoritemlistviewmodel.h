@@ -20,18 +20,15 @@ public:
     Q_PROPERTY(int noOfProcessors READ noOfProcessors NOTIFY noOfProcessorsChanged)
 
     ProcessorItemListViewModel(const CpuInfoDataHolder cpuInfoData, QObject *parent = nullptr);
+
     QList<QObject*> processorItems() const;
-
     int noOfProcessors() const;
-
-
 signals:
     void processorItemsChanged();
     void noOfProcessorsChanged();
 
 private slots:
     void updateProcessorItems();
-
 private:
     QList<QObject*> _processorItems;
     CpuInfoDataHolder _cpuInfoData;

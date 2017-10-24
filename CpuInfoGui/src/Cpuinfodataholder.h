@@ -19,8 +19,6 @@ public:
 
 public:
     std::vector < QMap<QString, QString> > dataVector;
-
-
 };
 
 #endif // CPUINFODATAHOLDER_H
