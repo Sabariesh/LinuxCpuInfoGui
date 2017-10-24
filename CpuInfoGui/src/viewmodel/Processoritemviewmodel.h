@@ -21,7 +21,7 @@ public:
     Q_PROPERTY(QString cpuMhz READ cpuMhz NOTIFY cpuMhzChanged)
     Q_PROPERTY(QString cacheSize READ cacheSize NOTIFY cacheSizeChanged)
     Q_PROPERTY(QString cpuCores READ cpuCores NOTIFY cpuCoresChanged)
-    Q_PROPERTY(QString fpu READ fpuFpu NOTIFY fpuChanged)
+    Q_PROPERTY(QString fpu READ fpu NOTIFY fpuChanged)
     Q_PROPERTY(QString bogoMips READ bogoMips NOTIFY bogoMipsChanged)
     Q_PROPERTY(QString processorNo READ processorNo NOTIFY processorNoChanged)
 //    Q_PROPERTY(QVariantMap dataVariant READ dataVariant NOTIFY dataVariantChanged)
@@ -38,7 +38,7 @@ public:
 
     QString cpuCores() const;
 
-    QString fpuFpu() const;
+    QString fpu() const;
 
     QString bogoMips() const;
 

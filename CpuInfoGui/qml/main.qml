@@ -1,68 +1,12 @@
-//import QtQuick 2.3
-//import QtQuick.Controls 1.2
-//import QtQuick.Layouts 1.3
-
-//ApplicationWindow {
-//    visible: true
-//    width: 640
-//    height: 480
-//    title: qsTr("Hello World")
-//    property var vm: root
-
-//    property int additionalFlags: 0
-////    flags: Qt.FramelessWindowHint | Qt.Window | additionalFlags
-//    menuBar: MenuBar {
-//        Menu {
-//            title: qsTr("File")
-//            MenuItem {
-//                text: qsTr("&Open")
-//                onTriggered: console.log("Open action triggered");
-//            }
-//            MenuItem {
-//                text: qsTr("Exit")
-//                onTriggered: Qt.quit();
-//            }
-//        }
-//    }
-
-
-////    Label {
-////        text: "#vm.noOfProcessors#"
-////        anchors.verticalCenterOffset: -178
-////        anchors.horizontalCenterOffset: -143
-////        //        text: qsTr("Hello World")
-////        anchors.centerIn: parent
-////    }
-////    Row {
-////        anchors.fill: parent
-////        Repeater {
-////            model: vm.processorItems
-////            Text {
-////                readonly property var processor : modelData
-////                text: modelData.vendorId
-////                //            anchors.centerIn: parent
-////            }
-
-////        }
-
-////    }
-
-//    Column {
-//        id: column
-//        x: 101
-//        y: 126
-//        width: 439
-//        height: 293
-//    }
-//}
-
 import QtQuick 2.6
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.1
+import QtQuick.Layouts 1.3
 
 Window {
     property int initialWidth: 600
-    property int initialHeight: 800
+    property int initialHeight: 500
+    property var processorPass
     id: mainView
     width: initialWidth
     height: initialHeight
@@ -73,73 +17,308 @@ Window {
     property  var vm: root
 
     Item {
+        id: item1
         anchors.fill: parent
         Label {
-//            y: 0
+            id: cpuLabel
+            //            y: 0
             anchors.right: parent.right
             anchors.left: parent.left
             Text {
-                id: text
+                id: text1
                 text: qsTr("Cpu information for the system")
                 verticalAlignment: Text.AlignVCenter
-//                horizontalAlignment: Text.AlignHCenter
+                //                horizontalAlignment: Text.AlignHCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                height: initialHeight/10
+                height: initialHeight/20
                 font.pixelSize: 22
                 font.italic: true
                 color: "steelblue"
             }
 
             Text {
-                id: text1
+                id: text2
                 text: qsTr("Total number of processors found:") + " " + vm.noOfProcessors
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                height: initialHeight/10 + 40
+                height: initialHeight/20 + 40
                 font.pixelSize: 12
                 font.italic: true
             }
         }
 
-//        TabBar {
-//            id: bar
-//            width: parent.width
-//            height: initialHeight/10 + 80
-//            Repeater {
-//                model: vm.processorItems
-//                TabButton {
-//                    readonly property var processor : modelData
-//                    text: "Processor: " + processor.processorNo
-//                    width: Math.max(100, bar.width / 5)
-//                }
-//            }
+        TabBar {
+            id: processorTabBar
+            y: text2.height+10
+            width: mainView.width
+            Repeater {
+                id: buttonRepeater
+                property int prevIndex : 0
+                model: vm.processorItems
+                TabButton {
+                    id:processorTabButton
+                    readonly property var processor : modelData
+                    width: Math.max(100, processorTabBar.width / vm.noOfProcessors)
+                    text: qsTr("Processor: ") + processor.processorNo
+                    onCheckedChanged: {
+                        mainView.processorPass = processor
+                    }
+                }
+            }
+        }
+//        Rectangle{
+//            id:messageRect
+////            height: 20
+//            anchors.top: processorTabBar.bottom
+        Rectangle
+        {
+            id:spacingRect
+            height: 20
+            anchors.top: processorTabBar.bottom
+        }
+
+        Rectangle{
+            id:infoRect
+            height: 10
+            anchors.top: spacingRect.bottom
+            Text {
+                id: infoText
+//                anchors.top: spacingRect.bottom
+//                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                text: qsTr("Information for the processor of model ") + processorPass.modelName
+            }
+
+        }
+
+
 //        }
+        ColumnLayout {
+            id: processorColumn
+//            anchors.top: infoText.bottom
+            anchors.top: infoRect.bottom
+            width: mainView.width
+//            anchors.fill: parent
+
+            GridLayout {
+                id: processorInfoGrid
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+//                anchors.top: infoRect.bottom
+                anchors.margins: 50
+                anchors.fill: parent
+                columnSpacing: 5
+                columns: 2
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "grey"
+                    border.color: "black"
+                    Text {
+                        text: "Processor Id";
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "white"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "grey"
+                    border.color: "black"
+                    Text {
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: processorPass.processorNo
+                        color: "white"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "white"
+                    border.color: "black"
+                    Text {
+                        text: "Manufacturer";
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "black"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "white"
+                    border.color: "black"
+                    Text {
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: processorPass.vendorId
+                        color: "black"
+                    }
+
+                }
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "grey"
+                    border.color: "black"
+                    Text {
+                        text: "Cache Size";
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "white"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "grey"
+                    border.color: "black"
+                    Text {
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: processorPass.cacheSize
+                        color: "white"
+                    }
+
+                }
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "white"
+                    border.color: "black"
+                    Text {
+                        text: "CPU Speed";
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "black"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "white"
+                    border.color: "black"
+                    Text {
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: processorPass.cpuMhz
+                        color: "black"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "grey"
+                    border.color: "black"
+                    Text {
+                        text: "No. of CPU Cores";
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "white"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "grey"
+                    border.color: "black"
+                    Text {
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: processorPass.cpuCores
+                        color: "white"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "white"
+                    border.color: "black"
+                    Text {
+                        text: "FPU Enabled";
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "black"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "white"
+                    border.color: "black"
+                    Text {
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: processorPass.fpu
+                        color: "black"
+                    }
+
+                }
+
+
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "grey"
+                    border.color: "black"
+                    Text {
+                        text: "CPU Speed in MIPS";
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "white"
+                    }
+
+                }
+
+                Rectangle {
+                    width: mainView.width/3
+                    height: 30
+                    color: "grey"
+                    border.color: "black"
+                    Text {
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: processorPass.bogoMips
+                        color: "white"
+                    }
+
+                }
+
+            }
+
+        }
+
     }
-
-//    Column {
-//        id: column
-//        x: 21
-//        y: 109
-//        width: 200
-//        height: 491
-//    }
-
-//    Row {
-//        id: row1
-//        x: 273
-//        y: 148
-//        width: 200
-//        height: 400
-//    }
-
-//    Row {
-//        id: row2
-//        x: 479
-//        y: 148
-//        width: 200
-//        height: 400
-//    }
 
 }
 

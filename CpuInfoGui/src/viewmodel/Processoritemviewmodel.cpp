@@ -37,7 +37,7 @@ QString ProcessorItemViewModel::cpuCores() const
     return _cpuCores;
 }
 
-QString ProcessorItemViewModel::fpuFpu() const
+QString ProcessorItemViewModel::fpu() const
 {
     return _fpu;
 }

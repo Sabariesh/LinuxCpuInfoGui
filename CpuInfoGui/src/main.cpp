@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 //    QApplication app(argc, argv);
     QGuiApplication app( argc, argv );
     std::ifstream readFile("/proc/cpuinfo");
-//    std::ifstream readFile("/home/sabariesh/cpuinfo");
+//    std::ifstream readFile("/home/sabariesh-work/cpuinfo1");
     CpuInfoReader dataReader;
 
 
