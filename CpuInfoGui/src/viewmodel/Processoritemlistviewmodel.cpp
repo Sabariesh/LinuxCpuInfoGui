@@ -8,7 +8,7 @@ Email Id: sabari.eshwar@gmail.com
 #include "src/Cpuinfodataholder.h"
 #include "Processoritemviewmodel.h"
 
-ProcessorItemListViewModel::ProcessorItemListViewModel(const CpuInfoDataHolder cpuInfoData, QObject *parent)
+ProcessorItemListViewModel::ProcessorItemListViewModel(const CpuInfoDataHolder *cpuInfoData, QObject *parent)
     : QObject(parent),
       _cpuInfoData(cpuInfoData)
 {
@@ -29,7 +29,8 @@ int ProcessorItemListViewModel::noOfProcessors() const
 void ProcessorItemListViewModel::updateProcessorItems()
 {
     int i = 0;
-    for (auto processorInfo : _cpuInfoData.dataVector)
+    auto dataVector = _cpuInfoData->retreiveData();
+    for (auto processorInfo : dataVector)
     {
         auto newItem = new ProcessorItemViewModel(processorInfo, this);
         _processorItems << newItem;

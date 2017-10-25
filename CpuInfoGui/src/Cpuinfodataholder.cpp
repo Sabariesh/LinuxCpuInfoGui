@@ -10,3 +10,14 @@ CpuInfoDataHolder::CpuInfoDataHolder()
 
 }
 
+void CpuInfoDataHolder::storeData(QMap<QString, QString> tempData)
+{
+    _dataVector.push_back(tempData);
+}
+
+CpuInfoDataHolder::dataVectorMap CpuInfoDataHolder::retreiveData() const
+{
+    return _dataVector;
+
+}
+

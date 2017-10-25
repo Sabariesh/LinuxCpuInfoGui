@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
 //    }
 
-    ProcessorItemListViewModel *_processorItemListViewModel = new ProcessorItemListViewModel(dataReader.dataHolder);
+    ProcessorItemListViewModel *_processorItemListViewModel = new ProcessorItemListViewModel(& dataReader.dataHolder);
 
     auto _engine = std::unique_ptr<QQmlApplicationEngine>(new QQmlApplicationEngine());
     _engine->rootContext()->setContextProperty("root", _processorItemListViewModel);

@@ -32,7 +32,7 @@ std::istream & operator>>(std::istream &str, CpuInfoReader &dataReader)
                 dataReader.noOfProcessors += 1;
                 if (dataReader.noOfProcessors > 1)
                 {
-                    dataReader.dataHolder.dataVector.push_back(dataReader.mapVariable);
+                    dataReader.dataHolder.storeData(dataReader.mapVariable);
                     dataReader.mapVariable.clear();
                 }
             }
@@ -43,7 +43,7 @@ std::istream & operator>>(std::istream &str, CpuInfoReader &dataReader)
     {
         if (dataReader.noOfProcessors != 0)
         {            
-            dataReader.dataHolder.dataVector.push_back(dataReader.mapVariable);
+            dataReader.dataHolder.storeData(dataReader.mapVariable);
         }
 
 
