@@ -16,8 +16,7 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app( argc, argv );
 
-    //Handling the data reading part, usually done in a different way(not in main loop),
-    //doing it in simplest method(YAGNI)
+    //Handling the data reading part, doing it in the simplest method(YAGNI)
     auto dataReader = std::unique_ptr<CpuInfoReader>(new CpuInfoReader());
     auto dataHolder = dataReader->readFile();
 
