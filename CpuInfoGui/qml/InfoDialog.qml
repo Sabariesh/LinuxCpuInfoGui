@@ -8,7 +8,7 @@ Window {
     color: "white"
     property int initialWidth: 600
     property int initialHeight: 450
-    width: initialWidth
+    width : initialWidth
     height: initialHeight
     property var processorInfo
     ListModel {
@@ -19,17 +19,18 @@ Window {
         }
     }
     TableView {
-        width: initialWidth
-        height: initialHeight
+        id:tableInfoView
+        width: infoDialog.width
+        height: infoDialog.height
         TableViewColumn {
                 role: "key"
                 title: qsTr("Properties")
-                width: initialWidth/2
+                width: tableInfoView.width/3
             }
             TableViewColumn {
                 role: "value"
                 title: qsTr("Value")
-                width: initialWidth/2
+                width: tableInfoView.width*2/3
             }
             model: processorInfo ? processorInfo.propItems : errorModel
         }

@@ -81,11 +81,11 @@ Window {
             id: processorColumn
             anchors.top: infoText.bottom
             width: mainView.width
-                ProcessorGridLayout {
-                    id: processorGridView
-                    anchors.horizontalCenter: parent.horizontalCenter
+            ProcessorGridLayout {
+                id: processorGridView
+                anchors.horizontalCenter: parent.horizontalCenter
 
-                }
+            }
            Rectangle
                 {
                     id:spacingRect1
