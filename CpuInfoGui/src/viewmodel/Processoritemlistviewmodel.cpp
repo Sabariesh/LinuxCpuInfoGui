@@ -10,7 +10,8 @@ Email Id: sabari.eshwar@gmail.com
 
 ProcessorItemListViewModel::ProcessorItemListViewModel(const CpuInfoDataHolder *cpuInfoData, QObject *parent)
     : QObject(parent),
-      _cpuInfoData(cpuInfoData)
+      _cpuInfoData(cpuInfoData),
+      _readError(0)
 {
     updateProcessorItems();
 
@@ -26,23 +27,32 @@ int ProcessorItemListViewModel::noOfProcessors() const
     return _noOfProcessors;
 }
 
+int ProcessorItemListViewModel::readError() const
+{
+    return _readError;
+}
+
 void ProcessorItemListViewModel::updateProcessorItems()
 {
     int i = 0;
     auto dataVector = _cpuInfoData->retreiveData();
-    for (auto processorInfo : dataVector)
+    if (!dataVector.empty())
     {
-        auto newItem = new ProcessorItemViewModel(processorInfo, this);
-        _processorItems << newItem;
-
-        i++;
-
+        for (auto processorInfo : dataVector)
+        {
+            auto newItem = new ProcessorItemViewModel(processorInfo, this);
+            _processorItems << newItem;
+            i++;
+        }
     }
-
+    else{
+        _readError = 1;
+    }
     _noOfProcessors = i;
 
     emit noOfProcessorsChanged();
     emit processorItemsChanged();
+    emit readErrorChanged();
 
 }
 

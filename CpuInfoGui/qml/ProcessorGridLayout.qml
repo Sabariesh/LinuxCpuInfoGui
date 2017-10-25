@@ -9,13 +9,14 @@ GridLayout {
     columnSpacing: 5
     columns: 2
     rows: 7
+    property string errorText: "N/A"
     ProcessorInfoItem{
         itemText.text: "Processor Id"
         itemText.color: "white"
         itemRect.color: "grey"
     }
     ProcessorInfoItem{
-        itemText.text: processorPass.processorNo
+        itemText.text: processorPass ? processorPass.processorNo : errorText
         itemText.color: "white"
         itemRect.color: "grey"
     }
@@ -25,7 +26,7 @@ GridLayout {
         itemRect.color: "white"
     }
     ProcessorInfoItem{
-        itemText.text: processorPass.vendorId
+        itemText.text: processorPass ? processorPass.vendorId : errorText
         itemText.color: "black"
         itemRect.color: "white"
     }
@@ -35,7 +36,7 @@ GridLayout {
         itemRect.color: "grey"
     }
     ProcessorInfoItem{
-        itemText.text: processorPass.cacheSize
+        itemText.text: processorPass ? processorPass.cacheSize : errorText
         itemText.color: "white"
         itemRect.color: "grey"
     }
@@ -45,7 +46,7 @@ GridLayout {
         itemRect.color: "white"
     }
     ProcessorInfoItem{
-        itemText.text: processorPass.cpuMhz
+        itemText.text: processorPass ? processorPass.cpuMhz : errorText
         itemText.color: "black"
         itemRect.color: "white"
     }
@@ -56,7 +57,7 @@ GridLayout {
         itemRect.color: "grey"
     }
     ProcessorInfoItem{
-        itemText.text: processorPass.cpuCores
+        itemText.text: processorPass ? processorPass.cpuCores : errorText
         itemText.color: "white"
         itemRect.color: "grey"
     }
@@ -67,7 +68,7 @@ GridLayout {
         itemRect.color: "white"
     }
     ProcessorInfoItem{
-        itemText.text: processorPass.fpu
+        itemText.text: processorPass ? processorPass.fpu : errorText
         itemText.color: "black"
         itemRect.color: "white"
     }
@@ -78,7 +79,7 @@ GridLayout {
         itemRect.color: "grey"
     }
     ProcessorInfoItem{
-        itemText.text: processorPass.bogoMips
+        itemText.text: processorPass ? processorPass.bogoMips : errorText
         itemText.color: "white"
         itemRect.color: "grey"
     }

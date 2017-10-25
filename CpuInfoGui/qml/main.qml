@@ -40,37 +40,53 @@ Window {
                 font.italic: true
             }
 
-        TabBar {
-            id: processorTabBar            
-            anchors.top: text2.bottom
-            width: mainView.width
-            Repeater {
-                id: buttonRepeater
-                property int prevIndex : 0
-                model: vm.processorItems
-                TabButton {
-                    id:processorTabButton
-                    readonly property var processor : modelData
-                    width: Math.max(100, processorTabBar.width / vm.noOfProcessors)
-                    text: qsTr("Processor: ") + processor.processorNo
-                    onCheckedChanged: {
-                        mainView.processorPass = processor
+            Text {
+                id: errorText
+                visible: vm.readError
+                text: qsTr("Unable to read the file : /proc/cpuinfo")
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 24
+                color: "red"
+            }
+
+            TabBar {
+                id: processorTabBar
+                visible: !vm.readError
+                anchors.top: text2.bottom
+                width: mainView.width
+                Repeater {
+                    id: buttonRepeater
+                    property int prevIndex : 0
+                    model: vm.processorItems
+                    TabButton {
+                        id:processorTabButton
+                        readonly property var processor : modelData
+                        width: processorTabBar.width / vm.noOfProcessors
+                        text: qsTr("Processor: ") + processor.processorNo
+                        onCheckedChanged: {
+                            mainView.processorPass = processor
+                        }
                     }
                 }
             }
-        }
 
-        Rectangle
-        {
-            id:spacingRect
-            height: 20
-            anchors.top: processorTabBar.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
+            Rectangle
+            {
+                id:spacingRect
+                visible: !vm.readError
+                height: 20
+                anchors.top: processorTabBar.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
 
             Text {
                 id: infoText
-                text: qsTr("Information for the processor of model ") + processorPass.modelName
+                visible: !vm.readError
+                property string displayText: vm.readError ? qsTr("N/A") : processorPass.modelName
+                text: qsTr("Information for the processor of model ") + displayText
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 anchors.top: spacingRect.bottom
@@ -79,6 +95,7 @@ Window {
 
         ColumnLayout {
             id: processorColumn
+            visible: !vm.readError
             anchors.top: infoText.bottom
             width: mainView.width
             ProcessorGridLayout {

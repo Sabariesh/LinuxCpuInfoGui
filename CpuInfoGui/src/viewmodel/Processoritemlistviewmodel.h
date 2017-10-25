@@ -18,14 +18,18 @@ class ProcessorItemListViewModel : public QObject
 public:
     Q_PROPERTY(QList<QObject*> processorItems READ processorItems NOTIFY processorItemsChanged)
     Q_PROPERTY(int noOfProcessors READ noOfProcessors NOTIFY noOfProcessorsChanged)
-
+    Q_PROPERTY(int readError READ readError NOTIFY readErrorChanged)
     ProcessorItemListViewModel(const CpuInfoDataHolder *cpuInfoData, QObject *parent = nullptr);
 
     QList<QObject*> processorItems() const;
     int noOfProcessors() const;
+    int readError() const;
+
 signals:
     void processorItemsChanged();
     void noOfProcessorsChanged();
+
+    void readErrorChanged();
 
 private slots:
     void updateProcessorItems();
@@ -33,6 +37,7 @@ private:
     QList<QObject*> _processorItems;
     const CpuInfoDataHolder *_cpuInfoData;
     int _noOfProcessors;
+    int _readError;
 };
 
 #endif // PROCESSORITEMLISTVIEWMODEL_H

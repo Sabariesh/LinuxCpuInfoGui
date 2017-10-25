@@ -54,6 +54,7 @@ signals:
 
 private slots:
     void updateValues();
+    QString getMapValue(QString);
 
 private:
     QMap<QString, QString> _dataMap;
