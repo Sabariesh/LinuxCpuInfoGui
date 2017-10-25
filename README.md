@@ -8,12 +8,12 @@ The application is built in C++ with Qt(QtQuick).
 
 The application on launch shows the basic information of the processor, through the tab view any needed processor information can be seen.
 
-<img src="https://raw.githubusercontent.com/Sabariesh/LinuxCpuInfoGui/master/WebGuiImg/CpuInfo.png" width="250px;"/>
+<img src="https://raw.githubusercontent.com/Sabariesh/LinuxCpuInfoGui/master/WebGuiImg/CpuInfo.png"/>
 
 
 On clicking "Detailed Info" button more detailed information of the selected processor is displayed.
 
-<img src="https://raw.githubusercontent.com/Sabariesh/LinuxCpuInfoGui/master/WebGuiImg/CpuDetailedInfo.png" width="250px;"/>
+<img src="https://raw.githubusercontent.com/Sabariesh/LinuxCpuInfoGui/master/WebGuiImg/CpuDetailedInfo.png"/>
 
 
 
