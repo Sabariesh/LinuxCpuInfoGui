@@ -16,30 +16,13 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app( argc, argv );
 
-    //Handling the data reading part, usually done in a different way,
-    //since all the variables are known, doing it in simplest method
-//    std::ifstream readFile("/proc/cpuinfo");
-    std::ifstream readFile("/home/sabariesh-work/cpuinfo1");
-    CpuInfoReader dataReader;
-    while(readFile >> dataReader)
-    {
-    }
-
-//    QMap<QString, QString>::iterator it;
-
-//    for (QMap<QString, QString> dataMap : dataReader.dataHolder.dataVector)
-//    {
-//        std::cout << 1 << "\n";
-//        for (it = dataMap.begin(); it != dataMap.end(); ++it) {
-
-//            std::cout << it.key().toStdString() << " : " << it.value().toStdString() << "\n";
-
-//        }
-
-//    }
+    //Handling the data reading part, usually done in a different way(not in main loop),
+    //doing it in simplest method(YAGNI)
+    auto dataReader = std::unique_ptr<CpuInfoReader>(new CpuInfoReader());
+    auto dataHolder = dataReader->readFile();
 
     // Instantiating the viewmodel for the qml
-    ProcessorItemListViewModel *_processorItemListViewModel = new ProcessorItemListViewModel(& dataReader.dataHolder);
+    ProcessorItemListViewModel *_processorItemListViewModel = new ProcessorItemListViewModel(& dataHolder);
 
     auto _engine = std::unique_ptr<QQmlApplicationEngine>(new QQmlApplicationEngine());
     //Settings the context with the view model named as root

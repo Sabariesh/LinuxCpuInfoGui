@@ -1,3 +1,7 @@
+/**************************************************************************
+Creator: Sabariesh Ganesan
+Email Id: sabari.eshwar@gmail.com
+**************************************************************************/
 import QtQuick 2.6
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.1
@@ -93,37 +97,37 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
-        ColumnLayout {
-            id: processorColumn
-            visible: !vm.readError
-            anchors.top: infoText.bottom
-            width: mainView.width
-            ProcessorGridLayout {
-                id: processorGridView
-                anchors.horizontalCenter: parent.horizontalCenter
+            ColumnLayout {
+                id: processorColumn
+                visible: !vm.readError
+                anchors.top: infoText.bottom
+                width: mainView.width
+                ProcessorGridLayout {
+                    id: processorGridView
+                    anchors.horizontalCenter: parent.horizontalCenter
 
-            }
-           Rectangle
+                }
+                Rectangle
                 {
                     id:spacingRect1
                     height: 10
                     anchors.top: processorGridView.bottom
                 }
 
-            Button{
-                text: qsTr("Detailed Info")
-                anchors.top: spacingRect1.bottom
-                anchors.horizontalCenter: parent.horizontalCenter
-                onClicked: {
-                    var component = Qt.createComponent("InfoDialog.qml")
-                    var window = component.createObject(mainView)
-                    window.processorInfo = processorPass
-                    window.show()
+                Button{
+                    text: qsTr("Detailed Info")
+                    anchors.top: spacingRect1.bottom
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    onClicked: {
+                        var component = Qt.createComponent("InfoDialog.qml")
+                        var window = component.createObject(mainView)
+                        window.processorInfo = processorPass
+                        window.show()
+                    }
+
                 }
 
             }
-
-        }
 
     }
 

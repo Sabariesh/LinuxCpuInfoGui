@@ -6,12 +6,24 @@ Email Id: sabari.eshwar@gmail.com
 #include <sstream>
 #include <string>
 #include <iostream>
+#include <fstream>
 
 #include <boost/algorithm/string.hpp>
 
 CpuInfoReader::CpuInfoReader()
     :  noOfProcessors(0)
 {
+}
+
+CpuInfoDataHolder CpuInfoReader::readFile()
+{
+    std::ifstream readFile("/proc/cpuinfo");
+//    std::ifstream readFile("/home/sabariesh-work/cpuinfo1");
+    while(readFile >> *this)
+    {
+    }
+    return this->dataHolder;
+
 }
 
 std::istream & operator>>(std::istream &str, CpuInfoReader &dataReader)
@@ -23,12 +35,15 @@ std::istream & operator>>(std::istream &str, CpuInfoReader &dataReader)
     if (std::getline(str,currentLine))
     {
         std::stringstream currentLineStream(currentLine);
+        //The values stored in the file are divided by ":", so reading only the properties that have value and trimming empty properties
         if (std::getline(currentLineStream, key, ':') && std::getline(currentLineStream, value))
         {
+            //Making sure the key and value does not have leading spaces on right and left
             boost::trim_right(key);
             boost::trim_left(value);
             if (key == "processor")
             {
+                // Counting by number of processors in the CPU, usually the unique entry
                 dataReader.noOfProcessors += 1;
                 if (dataReader.noOfProcessors > 1)
                 {
@@ -51,4 +66,5 @@ std::istream & operator>>(std::istream &str, CpuInfoReader &dataReader)
     return str;
 
 }
+
 

@@ -1,9 +1,14 @@
+/**************************************************************************
+Creator: Sabariesh Ganesan
+Email Id: sabari.eshwar@gmail.com
+**************************************************************************/
 #ifndef PROCESSORPROPVIEWMODEL_H
 #define PROCESSORPROPVIEWMODEL_H
 
 #include <QObject>
 #include <QString>
 
+// Creating list of key and values. Could have be handled as a simple QVariant type, but if the future needs more flexibility to display the values.
 class ProcessorPropViewModel : public QObject
 {
     Q_OBJECT

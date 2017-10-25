@@ -15,6 +15,13 @@ Email Id: sabari.eshwar@gmail.com
 #include <QVariantMap>
 #include <QVariantList>
 
+
+// Properties to be displayed in QML are seperated here for basic and detailed view. The values for the basic values are provided directly and the values for the detailed
+// view are provided as list model
+//Reason for treating in different way is to build a tool that is agnostic  to the CPU Architecture, CPU type and the various properties stored by different flavors of linux
+// It is assumed the basic view properties are common in most of the CPU Architecture, CPU type and Linux system. And the advanced view just passes the complete file
+// as List and allow the QML to handle the display of values (without knowing key and value).
+
 class ProcessorItemViewModel : public QObject
 {
     Q_OBJECT

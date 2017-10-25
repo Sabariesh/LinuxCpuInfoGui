@@ -10,10 +10,11 @@ Email Id: sabari.eshwar@gmail.com
 
 #include "src/Cpuinfodataholder.h"
 
+//The root view model to collect all the data and pass it on to the qml
+
 class ProcessorItemListViewModel : public QObject
 {
     Q_OBJECT
-
 
 public:
     Q_PROPERTY(QList<QObject*> processorItems READ processorItems NOTIFY processorItemsChanged)

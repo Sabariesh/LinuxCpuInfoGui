@@ -1,3 +1,7 @@
+/**************************************************************************
+Creator: Sabariesh Ganesan
+Email Id: sabari.eshwar@gmail.com
+**************************************************************************/
 #include "Processorpropviewmodel.h"
 
 ProcessorPropViewModel::ProcessorPropViewModel(QString key, QString name, QObject *parent)

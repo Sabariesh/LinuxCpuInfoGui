@@ -69,15 +69,13 @@ QString ProcessorItemViewModel::getMapValue(QString key)
 void ProcessorItemViewModel::updateValues()
 {
     _vendorId = getMapValue("vendor_id");
-//    _vendorId = _dataMap["vendor_id"];
-    _modelName = _dataMap["model name"];
-    _cpuMhz = _dataMap["cpu MHz"];
-    _cacheSize = _dataMap["cache size"];
-    _cpuCores = _dataMap["cpu cores"];
-    _fpu = _dataMap["fpu"];
-    _bogoMips = _dataMap["bogomips"];
+    _modelName = getMapValue("model name");
+    _cpuMhz = getMapValue("cpu MHz");
+    _cacheSize = getMapValue("cache size");
+    _cpuCores = getMapValue("cpu cores");
+    _fpu = getMapValue("fpu");
+    _bogoMips = getMapValue("bogomips");
     _processorNo = getMapValue("processor");
-//    _processorNo = _dataMap["processor"];
 
     QMap<QString, QString>::iterator it;
 

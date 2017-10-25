@@ -10,6 +10,7 @@ Email Id: sabari.eshwar@gmail.com
 #include <QMap>
 #include <QString>
 
+//class to store the vector of data map
 class CpuInfoDataHolder
 {
 public:

@@ -1,7 +1,11 @@
+/**************************************************************************
+Creator: Sabariesh Ganesan
+Email Id: sabari.eshwar@gmail.com
+**************************************************************************/
 import QtQuick 2.6
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
-
+// Additional window to provide the detailed view of the file information
 Window {
     id: infoDialog
     title: qsTr("Processor Detailed Info")

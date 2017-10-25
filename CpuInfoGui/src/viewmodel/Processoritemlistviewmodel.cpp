@@ -36,6 +36,7 @@ void ProcessorItemListViewModel::updateProcessorItems()
 {
     int i = 0;
     auto dataVector = _cpuInfoData->retreiveData();
+    //Error handling if the file read was empty or wrong file is read or error reading the file or if the file does not exist
     if (!dataVector.empty())
     {
         for (auto processorInfo : dataVector)
