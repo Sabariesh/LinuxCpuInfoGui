@@ -4,7 +4,6 @@ Email Id: sabari.eshwar@gmail.com
 **************************************************************************/
 
 #include "src/viewmodel/Processoritemlistviewmodel.h"
-
 #include "src/Cpuinfodataholder.h"
 #include "Processoritemviewmodel.h"
 

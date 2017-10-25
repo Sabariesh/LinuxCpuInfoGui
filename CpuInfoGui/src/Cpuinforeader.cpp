@@ -17,7 +17,7 @@ CpuInfoReader::CpuInfoReader()
 
 CpuInfoDataHolder CpuInfoReader::readFile()
 {
-    std::ifstream readFile("/proc/cpuinfo");
+    std::ifstream readFile(_fileName);
 //    std::ifstream readFile("/home/sabariesh-work/cpuinfo1");
     while(readFile >> *this)
     {

@@ -19,8 +19,10 @@ public:
     friend std::istream& operator>>(std::istream& str, CpuInfoReader& dataReader);
 public:
     QMap<QString, QString> mapVariable;
-    int noOfProcessors;
+    int noOfProcessors;    
     CpuInfoDataHolder dataHolder;
+private:
+    std::string _fileName = "/proc/cpuinfo";
 };
 
 #endif // CPUINFOREADER_H
